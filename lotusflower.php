@@ -1,4 +1,4 @@
-<?php
+index<?php
 
 $use_auth = true;
 $auth_users = array(
